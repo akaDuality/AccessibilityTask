@@ -65,6 +65,7 @@ class ViewController: ShakeViewController {
         priceContainer.isHidden = true
         
         onShake = fillMockData
+        emailErrorLabel.isHidden = true
     }
     
     private func fillMockData() {
@@ -74,6 +75,7 @@ class ViewController: ShakeViewController {
 
     // MARK: - Email
     @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var emailErrorLabel: UILabel!
     
     @IBAction func emailDidChanged(_ sender: UITextField) {
         let email: Email = sender.text!

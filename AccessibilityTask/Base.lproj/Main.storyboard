@@ -148,7 +148,7 @@
                                         </constraints>
                                         <edgeInsets key="layoutMargins" top="16" left="24" bottom="16" right="24"/>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OVh-rC-f9k">
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OVh-rC-f9k">
                                         <rect key="frame" x="0.0" y="195" width="333" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="rpF-bQ-h2G"/>
@@ -194,6 +194,7 @@
                     <connections>
                         <outlet property="addPostcardSwitch" destination="olH-Ix-iL8" id="N03-aU-wLo"/>
                         <outlet property="countStepper" destination="yWP-a2-xt7" id="HoK-ZJ-8bn"/>
+                        <outlet property="emailErrorLabel" destination="Web-MJ-0sb" id="Ea2-Vi-jCf"/>
                         <outlet property="emailMistakeLabel" destination="Web-MJ-0sb" id="c3F-GQ-rDX"/>
                         <outlet property="emailTextField" destination="I5h-Yx-7Mn" id="jyl-8m-MuL"/>
                         <outlet property="numberOfPiecesLabel" destination="HCC-5j-QZB" id="Xx1-7t-7pE"/>
