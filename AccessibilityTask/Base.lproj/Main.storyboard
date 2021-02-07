@@ -231,9 +231,9 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4GH-8B-aHT">
-                            <rect key="frame" x="137" y="101" width="60" height="30"/>
+                            <rect key="frame" x="112" y="101" width="110" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Закрыть"/>
+                            <state key="normal" title="Отправить еще"/>
                             <connections>
                                 <action selector="closeModalView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fGC-Gq-faO"/>
                             </connections>

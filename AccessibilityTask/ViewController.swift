@@ -125,11 +125,15 @@ class ViewController: ShakeViewController {
     private var overlay: UIView!
     
     func startPayment() {
-        overlay = UIView()
-        overlay.backgroundColor = .black
-        overlay.alpha = 0.5
-        overlay.frame = view.bounds
-        view.addSubview(overlay)
+        func addOverlay() {
+            overlay = UIView()
+            overlay.backgroundColor = .black
+            overlay.alpha = 0.5
+            overlay.frame = view.frame
+            view.addSubview(overlay)
+        }
+        
+        addOverlay()
         
         let indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
         indicator.startAnimating()
@@ -157,6 +161,15 @@ class ViewController: ShakeViewController {
         overlay.removeFromSuperview()
         overlay = nil
         successModalView.isHidden = true
+        
+        func clearInput() {
+            emailTextField.text = ""
+            emailDidChanged(emailTextField)
+        }
+        
+        clearInput()
     }
+    
+    #warning("Add pseudo timer")
 }
 
