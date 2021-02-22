@@ -15,6 +15,7 @@
 		1EE3772F25CB2644006DD12B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EE3772D25CB2644006DD12B /* LaunchScreen.storyboard */; };
 		1EE3773A25CB2644006DD12B /* AccessibilityTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE3773925CB2644006DD12B /* AccessibilityTaskTests.swift */; };
 		1EE3774525CB2644006DD12B /* AccessibilityTaskUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE3774425CB2644006DD12B /* AccessibilityTaskUITests.swift */; };
+		D5610A5625E2823A00CE11ED /* AccessibilityStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5610A5525E2823A00CE11ED /* AccessibilityStepper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		1EE3774025CB2644006DD12B /* AccessibilityTaskUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AccessibilityTaskUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EE3774425CB2644006DD12B /* AccessibilityTaskUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityTaskUITests.swift; sourceTree = "<group>"; };
 		1EE3774625CB2644006DD12B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D5610A5525E2823A00CE11ED /* AccessibilityStepper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessibilityStepper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 			children = (
 				1EE3772225CB2643006DD12B /* AppDelegate.swift */,
 				1EE3772425CB2643006DD12B /* SceneDelegate.swift */,
+				D5610A5525E2823A00CE11ED /* AccessibilityStepper.swift */,
 				1EE3772625CB2643006DD12B /* ViewController.swift */,
 				1EE3772825CB2643006DD12B /* Main.storyboard */,
 				1EE3772B25CB2644006DD12B /* Assets.xcassets */,
@@ -258,6 +261,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5610A5625E2823A00CE11ED /* AccessibilityStepper.swift in Sources */,
 				1EE3772725CB2643006DD12B /* ViewController.swift in Sources */,
 				1EE3772325CB2643006DD12B /* AppDelegate.swift in Sources */,
 				1EE3772525CB2643006DD12B /* SceneDelegate.swift in Sources */,
@@ -438,6 +442,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = AccessibilityTask/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -456,6 +461,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = AccessibilityTask/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
