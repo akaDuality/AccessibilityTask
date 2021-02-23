@@ -169,7 +169,5 @@ class ViewController: ShakeViewController {
         
         clearInput()
     }
-    
-    #warning("Add pseudo timer")
 }
 

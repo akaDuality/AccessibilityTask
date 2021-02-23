@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1ED06F2125E4D47C007D333B /* StudentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED06F2025E4D47C007D333B /* StudentsViewController.swift */; };
+		1ED06F2625E4D48A007D333B /* StudentsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ED06F2525E4D48A007D333B /* StudentsViewController.storyboard */; };
 		1EE3772325CB2643006DD12B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE3772225CB2643006DD12B /* AppDelegate.swift */; };
 		1EE3772525CB2643006DD12B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE3772425CB2643006DD12B /* SceneDelegate.swift */; };
 		1EE3772725CB2643006DD12B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE3772625CB2643006DD12B /* ViewController.swift */; };
@@ -35,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1ED06F2025E4D47C007D333B /* StudentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsViewController.swift; sourceTree = "<group>"; };
+		1ED06F2525E4D48A007D333B /* StudentsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StudentsViewController.storyboard; sourceTree = "<group>"; };
 		1EE3771F25CB2643006DD12B /* AccessibilityTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AccessibilityTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EE3772225CB2643006DD12B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EE3772425CB2643006DD12B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +80,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1ED06F3025E4D775007D333B /* Students */ = {
+			isa = PBXGroup;
+			children = (
+				1ED06F2025E4D47C007D333B /* StudentsViewController.swift */,
+				1ED06F2525E4D48A007D333B /* StudentsViewController.storyboard */,
+			);
+			path = Students;
+			sourceTree = "<group>";
+		};
+		1ED06F3125E4D78B007D333B /* Default */ = {
+			isa = PBXGroup;
+			children = (
+				1EE3772225CB2643006DD12B /* AppDelegate.swift */,
+				1EE3772425CB2643006DD12B /* SceneDelegate.swift */,
+				1EE3772B25CB2644006DD12B /* Assets.xcassets */,
+				1EE3772D25CB2644006DD12B /* LaunchScreen.storyboard */,
+				1EE3773025CB2644006DD12B /* Info.plist */,
+			);
+			path = Default;
+			sourceTree = "<group>";
+		};
+		1ED06F3B25E4D7E3007D333B /* CopyAndRename */ = {
+			isa = PBXGroup;
+			children = (
+				1EE3772625CB2643006DD12B /* ViewController.swift */,
+				1EE3772825CB2643006DD12B /* Main.storyboard */,
+			);
+			path = CopyAndRename;
+			sourceTree = "<group>";
+		};
 		1EE3771625CB2643006DD12B = {
 			isa = PBXGroup;
 			children = (
@@ -99,13 +133,9 @@
 		1EE3772125CB2643006DD12B /* AccessibilityTask */ = {
 			isa = PBXGroup;
 			children = (
-				1EE3772225CB2643006DD12B /* AppDelegate.swift */,
-				1EE3772425CB2643006DD12B /* SceneDelegate.swift */,
-				1EE3772625CB2643006DD12B /* ViewController.swift */,
-				1EE3772825CB2643006DD12B /* Main.storyboard */,
-				1EE3772B25CB2644006DD12B /* Assets.xcassets */,
-				1EE3772D25CB2644006DD12B /* LaunchScreen.storyboard */,
-				1EE3773025CB2644006DD12B /* Info.plist */,
+				1ED06F3125E4D78B007D333B /* Default */,
+				1ED06F3025E4D775007D333B /* Students */,
+				1ED06F3B25E4D7E3007D333B /* CopyAndRename */,
 			);
 			path = AccessibilityTask;
 			sourceTree = "<group>";
@@ -234,6 +264,7 @@
 				1EE3772F25CB2644006DD12B /* LaunchScreen.storyboard in Resources */,
 				1EE3772C25CB2644006DD12B /* Assets.xcassets in Resources */,
 				1EE3772A25CB2643006DD12B /* Main.storyboard in Resources */,
+				1ED06F2625E4D48A007D333B /* StudentsViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,6 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1ED06F2125E4D47C007D333B /* StudentsViewController.swift in Sources */,
 				1EE3772725CB2643006DD12B /* ViewController.swift in Sources */,
 				1EE3772325CB2643006DD12B /* AppDelegate.swift in Sources */,
 				1EE3772525CB2643006DD12B /* SceneDelegate.swift in Sources */,
@@ -437,7 +469,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = AccessibilityTask/Info.plist;
+				INFOPLIST_FILE = AccessibilityTask/Default/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -455,7 +487,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = AccessibilityTask/Info.plist;
+				INFOPLIST_FILE = AccessibilityTask/Default/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
