@@ -215,12 +215,11 @@
                         <outlet property="emailTextField" destination="I5h-Yx-7Mn" id="jyl-8m-MuL"/>
                         <outlet property="numberOfPiecesLabel" destination="HCC-5j-QZB" id="Xx1-7t-7pE"/>
                         <outlet property="paymentButton" destination="OVh-rC-f9k" id="7Lx-e3-9da"/>
-                        <outlet property="piecesStackContainer" destination="e5f-XH-C3b" id="PfL-Np-cqB"/>
                         <outlet property="postcardLabelsStackContainer" destination="xNB-r7-4Qy" id="CZ3-OT-aig"/>
-                        <outlet property="postcardStackContainer" destination="zVK-Hi-fn1" id="bfX-fS-px7"/>
                         <outlet property="priceContainer" destination="FD4-b1-Hiq" id="340-or-bLJ"/>
                         <outlet property="successModalView" destination="LZQ-Tx-Jet" id="vxg-uH-hbM"/>
-                        <outlet property="summaryContainer" destination="EUs-cv-P8v" id="JR5-DY-yCT"/>
+                        <outlet property="successTextLabel" destination="NWB-SH-Y8B" id="RY5-0q-7Oe"/>
+                        <outlet property="successTitleLabel" destination="GDA-hw-xIZ" id="8GN-17-1Bx"/>
                         <outlet property="totalLabel" destination="6zX-h5-d4K" id="Cgc-pH-8NH"/>
                     </connections>
                 </viewController>
@@ -246,6 +245,9 @@
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🍕" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Pmm-XS-jwV">
                             <rect key="frame" x="23" y="23" width="56" height="63"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <accessibility key="accessibilityConfiguration">
+                                <bool key="isElement" value="NO"/>
+                            </accessibility>
                             <fontDescription key="fontDescription" type="system" pointSize="52"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>

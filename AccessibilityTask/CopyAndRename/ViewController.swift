@@ -56,10 +56,12 @@ class ViewController: ShakeViewController, UITextFieldDelegate {
     @IBOutlet weak var successModalView: UIView!
     @IBOutlet private weak var dummyFriendAddressLabel: UILabel!
     
-    @IBOutlet private weak var piecesStackContainer: UIStackView!
+    
     @IBOutlet private weak var postcardLabelsStackContainer: UIStackView!
-    @IBOutlet private weak var postcardStackContainer: UIStackView!
-    @IBOutlet private weak var summaryContainer: UIView!
+    @IBOutlet private weak var successTitleLabel: UILabel!
+    @IBOutlet private weak var successTextLabel: UILabel!
+    
+    private lazy var indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,10 +82,6 @@ class ViewController: ShakeViewController, UITextFieldDelegate {
         view.addGestureRecognizer(tapRecognizer)
         
         setupAccessibility()
-        
-        // WARNING: REMOVE BEFORE PR!
-//        fillMockData()
-        //
     }
     
     override func viewDidLayoutSubviews() {
@@ -93,7 +91,7 @@ class ViewController: ShakeViewController, UITextFieldDelegate {
     }
     
     private func setupAccessibility() {
-        emailTextField.accessibilityLabel = "E-mail друга"
+        emailTextField.accessibilityLabel = "Адрес друга"
         
         countStepper.accessibilityTraits.formUnion(.adjustable)
         countStepper.isAccessibilityElement = true
@@ -113,6 +111,10 @@ class ViewController: ShakeViewController, UITextFieldDelegate {
         }
         paymentButton.total = price
         paymentButton.piecesCount = Int(countStepper.value)
+        
+        indicator.accessibilityLabel = "Идет отправка счастья"
+        successTitleLabel.accessibilityLabel = [successTitleLabel.text!, successTextLabel.text!].joined(separator: ", ")
+        successTextLabel.isAccessibilityElement = false
     }
     
     private func setupAccessibilityFrames() {
@@ -218,15 +220,18 @@ class ViewController: ShakeViewController, UITextFieldDelegate {
         
         addOverlay()
         
-        let indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
         indicator.startAnimating()
+        indicator.hidesWhenStopped = true
         overlay.addSubview(indicator)
         indicator.center = overlay.center
+        UIAccessibility.post(notification: .screenChanged, argument: indicator)
     }
     
     func finishPayment() {
+        indicator.stopAnimating()
         view.addSubview(successModalView)
         successModalView.isHidden = false
+        UIAccessibility.post(notification: .screenChanged, argument: successTitleLabel)
     }
     
     @IBAction func pay(_ sender: Any) {
@@ -251,6 +256,7 @@ class ViewController: ShakeViewController, UITextFieldDelegate {
         }
         
         clearInput()
+        UIAccessibility.post(notification: .screenChanged, argument: emailTextField)
     }
 }
 
