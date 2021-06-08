@@ -95,14 +95,14 @@ class ViewController: ShakeViewController, UITextFieldDelegate {
         
         countStepper.accessibilityTraits.formUnion(.adjustable)
         countStepper.isAccessibilityElement = true
-        countStepper.accessibilityValue = "\(Int(countStepper.value)) кусочек. Итого: \(price) рублей"
+        countStepper.accessibilityValue = "\(piecesCountUniversal(count: Int(countStepper.value))). Итого: \(roublesCountUniversal(count: price))"
         countStepper.accessibilityLabel = "Количество кусочков"
         
         addPostcardSwitch.isAccessibilityElement = true
         addPostcardSwitch.accessibilityLabel = "Добавить открытку за 25 рублей"
         
         totalLabel.accessibilityLabel = "Итого"
-        totalLabel.accessibilityValue = "\(price) рублей"
+        totalLabel.accessibilityValue = roublesCountUniversal(count: price)
         
         if paymentButton.isEnabled {
             paymentButton.accessibilityTraits.remove(.notEnabled)
@@ -127,6 +127,15 @@ class ViewController: ShakeViewController, UITextFieldDelegate {
         // Стэк-вью ломался :(
 //        let postcardSwitchA11yFrame = addPostcardSwitch.accessibilityFrame.union(postcardLabelsStackContainer.accessibilityFrame)
 //        addPostcardSwitch.accessibilityFrame = screenCoordinate(postcardSwitchA11yFrame, in: view)
+    }
+    
+    private func piecesCountUniversal(count: Int) -> String {
+        let formatString : String = NSLocalizedString(
+            "pieces",
+            comment: ""
+        )
+        let resultString = String(format: formatString, count)
+        return resultString;
     }
     
     private func screenCoordinate(_ value: CGRect, in view: UIView) -> CGRect {
@@ -179,7 +188,7 @@ class ViewController: ShakeViewController, UITextFieldDelegate {
     @IBOutlet weak var countStepper: AccessibleStepper!
     @IBOutlet weak var numberOfPiecesLabel: UILabel!
     @IBAction func numberOfPiecesDidChange(_ sender: UIStepper) {
-        numberOfPiecesLabel.text = "\(Int(sender.value)) кусочек"
+        numberOfPiecesLabel.text = piecesCountUniversal(count: Int(sender.value))
         updateTotal()
         setupAccessibility()
     }
@@ -278,7 +287,7 @@ extension PaymentButton: AXCustomContentProvider {
             if postcardAdded {
                 postcard = AXCustomContent(label: "С открыткой", value: "")
             }
-            let total = AXCustomContent(label: "Итого", value: "\(total) рублей")
+            let total = AXCustomContent(label: "Итого", value: roublesCountUniversal(count: total))
             total.importance = .high
             return [pieces, postcard, total].compactMap { $0 }
         }
@@ -297,4 +306,14 @@ final class AccessibleStepper: UIStepper {
         value -= stepValue
         sendActions(for: .valueChanged)
     }
+}
+
+
+private func roublesCountUniversal(count: Int) -> String {
+    let formatString : String = NSLocalizedString(
+        "roubles",
+        comment: ""
+    )
+    let resultString = String(format: formatString, count)
+    return resultString;
 }
