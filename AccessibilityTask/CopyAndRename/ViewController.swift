@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Accessibility
 
 typealias Email = String
 extension Email {
@@ -50,9 +51,17 @@ class ShakeViewController: UIViewController {
     }
 }
 
-class ViewController: ShakeViewController {
+class ViewController: ShakeViewController, UITextFieldDelegate {
 
     @IBOutlet weak var successModalView: UIView!
+    @IBOutlet private weak var dummyFriendAddressLabel: UILabel!
+    
+    
+    @IBOutlet private weak var postcardLabelsStackContainer: UIStackView!
+    @IBOutlet private weak var successTitleLabel: UILabel!
+    @IBOutlet private weak var successTextLabel: UILabel!
+    
+    private lazy var indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,6 +75,75 @@ class ViewController: ShakeViewController {
         
         onShake = fillMockData
         emailErrorLabel.isHidden = true
+        
+        emailTextField.delegate = self
+        
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(resignKeyboard))
+        view.addGestureRecognizer(tapRecognizer)
+        
+        setupAccessibility()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        setupAccessibilityFrames()
+    }
+    
+    private func setupAccessibility() {
+        emailTextField.accessibilityLabel = "Адрес друга"
+        
+        countStepper.accessibilityTraits.formUnion(.adjustable)
+        countStepper.isAccessibilityElement = true
+        countStepper.accessibilityValue = "\(piecesCountUniversal(count: Int(countStepper.value))). Итого: \(roublesCountUniversal(count: price))"
+        countStepper.accessibilityLabel = "Количество кусочков"
+        
+        addPostcardSwitch.isAccessibilityElement = true
+        addPostcardSwitch.accessibilityLabel = "Добавить открытку за 25 рублей"
+        
+        totalLabel.accessibilityLabel = "Итого"
+        totalLabel.accessibilityValue = roublesCountUniversal(count: price)
+        
+        if paymentButton.isEnabled {
+            paymentButton.accessibilityTraits.remove(.notEnabled)
+        } else {
+            paymentButton.accessibilityTraits.formUnion(.notEnabled)
+        }
+        paymentButton.total = price
+        paymentButton.piecesCount = Int(countStepper.value)
+        
+        indicator.accessibilityLabel = "Идет отправка счастья"
+        successTitleLabel.accessibilityLabel = [successTitleLabel.text!, successTextLabel.text!].joined(separator: ", ")
+        successTextLabel.isAccessibilityElement = false
+    }
+    
+    private func setupAccessibilityFrames() {
+        dummyFriendAddressLabel.isAccessibilityElement = false
+        
+        let stepperA11yFrame = countStepper.accessibilityFrame.union(numberOfPiecesLabel.accessibilityFrame)
+        countStepper.accessibilityFrame = screenCoordinate(stepperA11yFrame, in: view)
+        numberOfPiecesLabel.isAccessibilityElement = false
+
+        // Стэк-вью ломался :(
+//        let postcardSwitchA11yFrame = addPostcardSwitch.accessibilityFrame.union(postcardLabelsStackContainer.accessibilityFrame)
+//        addPostcardSwitch.accessibilityFrame = screenCoordinate(postcardSwitchA11yFrame, in: view)
+    }
+    
+    private func piecesCountUniversal(count: Int) -> String {
+        let formatString : String = NSLocalizedString(
+            "pieces",
+            comment: ""
+        )
+        let resultString = String(format: formatString, count)
+        return resultString;
+    }
+    
+    private func screenCoordinate(_ value: CGRect, in view: UIView) -> CGRect {
+        UIAccessibility.convertToScreenCoordinates(value, in: view)
+    }
+    
+    @objc private func resignKeyboard() {
+        view.endEditing(true)
     }
     
     private func fillMockData() {
@@ -88,40 +166,56 @@ class ViewController: ShakeViewController {
         }
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     @IBOutlet weak var emailMistakeLabel: UILabel!
     @IBAction func emailEditiingDidEnd(_ sender: UITextField) {
         let email: Email = sender.text!
         emailMistakeLabel.isHidden = email.isValid
+        if email.isValid {
+            UIAccessibility.post(notification: .layoutChanged, argument: countStepper)
+        } else {
+            UIAccessibility.post(notification: .layoutChanged, argument: emailMistakeLabel)
+        }
     }
     
     
     // MARK: - Price
     @IBOutlet weak var priceContainer: UIView!
-    @IBOutlet weak var countStepper: UIStepper!
+    @IBOutlet weak var countStepper: AccessibleStepper!
     @IBOutlet weak var numberOfPiecesLabel: UILabel!
     @IBAction func numberOfPiecesDidChange(_ sender: UIStepper) {
-        numberOfPiecesLabel.text = "\(Int(sender.value)) кусочек"
+        numberOfPiecesLabel.text = piecesCountUniversal(count: Int(sender.value))
         updateTotal()
+        setupAccessibility()
     }
     
     @IBOutlet weak var addPostcardSwitch: UISwitch!
     @IBAction func addPostcardDidChange(_ sender: Any) {
         updateTotal()
+        paymentButton.postcardAdded = addPostcardSwitch.isOn
     }
     
     @IBOutlet weak var totalLabel: UILabel!
-    private func updateTotal() {
-        var price = countStepper.value * 50
-        
+    var price: Int {
+        var value = countStepper.value * 50
         if addPostcardSwitch.isOn {
-            price += 25
+            value += 25
         }
-        totalLabel.text = "\(Int(price)) ₽"
+        return Int(value)
+    }
+    
+    private func updateTotal() {
+        totalLabel.text = "\(price) ₽"
+        setupAccessibility()
     }
     
     
     // MARK: - Payment
-    @IBOutlet weak var paymentButton: UIButton!
+    @IBOutlet weak var paymentButton: PaymentButton!
     private var overlay: UIView!
     
     func startPayment() {
@@ -135,15 +229,18 @@ class ViewController: ShakeViewController {
         
         addOverlay()
         
-        let indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
         indicator.startAnimating()
+        indicator.hidesWhenStopped = true
         overlay.addSubview(indicator)
         indicator.center = overlay.center
+        UIAccessibility.post(notification: .screenChanged, argument: indicator)
     }
     
     func finishPayment() {
+        indicator.stopAnimating()
         view.addSubview(successModalView)
         successModalView.isHidden = false
+        UIAccessibility.post(notification: .screenChanged, argument: successTitleLabel)
     }
     
     @IBAction func pay(_ sender: Any) {
@@ -168,6 +265,55 @@ class ViewController: ShakeViewController {
         }
         
         clearInput()
+        UIAccessibility.post(notification: .screenChanged, argument: emailTextField)
     }
 }
 
+final class PaymentButton: UIButton {
+    var piecesCount: Int = 0
+    var postcardAdded: Bool = false
+    var total: Int = 0
+}
+
+extension PaymentButton: AXCustomContentProvider {
+
+    var accessibilityCustomContent: [AXCustomContent]! {
+        get {
+            guard isEnabled else {
+                return []
+            }
+            let pieces = AXCustomContent(label: "Кусочков", value: String(describing: piecesCount))
+            var postcard: AXCustomContent?
+            if postcardAdded {
+                postcard = AXCustomContent(label: "С открыткой", value: "")
+            }
+            let total = AXCustomContent(label: "Итого", value: roublesCountUniversal(count: total))
+            total.importance = .high
+            return [pieces, postcard, total].compactMap { $0 }
+        }
+        set(accessibilityCustomContent) { }
+    }
+}
+
+final class AccessibleStepper: UIStepper {
+
+    override func accessibilityIncrement() {
+        value += stepValue
+        sendActions(for: .valueChanged)
+    }
+
+    override func accessibilityDecrement() {
+        value -= stepValue
+        sendActions(for: .valueChanged)
+    }
+}
+
+
+private func roublesCountUniversal(count: Int) -> String {
+    let formatString : String = NSLocalizedString(
+        "roubles",
+        comment: ""
+    )
+    let resultString = String(format: formatString, count)
+    return resultString;
+}

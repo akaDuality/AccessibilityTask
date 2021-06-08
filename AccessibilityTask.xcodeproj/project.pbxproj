@@ -17,6 +17,7 @@
 		1EE3772F25CB2644006DD12B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EE3772D25CB2644006DD12B /* LaunchScreen.storyboard */; };
 		1EE3773A25CB2644006DD12B /* AccessibilityTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE3773925CB2644006DD12B /* AccessibilityTaskTests.swift */; };
 		1EE3774525CB2644006DD12B /* AccessibilityTaskUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE3774425CB2644006DD12B /* AccessibilityTaskUITests.swift */; };
+		43A15617267003B400CC7E12 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 43A15616267003B400CC7E12 /* Localizable.stringsdict */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		1EE3774025CB2644006DD12B /* AccessibilityTaskUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AccessibilityTaskUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EE3774425CB2644006DD12B /* AccessibilityTaskUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityTaskUITests.swift; sourceTree = "<group>"; };
 		1EE3774625CB2644006DD12B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		43A15616267003B400CC7E12 /* Localizable.stringsdict */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; path = Localizable.stringsdict; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				1EE3772625CB2643006DD12B /* ViewController.swift */,
+				43A15616267003B400CC7E12 /* Localizable.stringsdict */,
 				1EE3772825CB2643006DD12B /* Main.storyboard */,
 			);
 			path = CopyAndRename;
@@ -264,6 +267,7 @@
 				1EE3772F25CB2644006DD12B /* LaunchScreen.storyboard in Resources */,
 				1EE3772C25CB2644006DD12B /* Assets.xcassets in Resources */,
 				1EE3772A25CB2643006DD12B /* Main.storyboard in Resources */,
+				43A15617267003B400CC7E12 /* Localizable.stringsdict in Resources */,
 				1ED06F2625E4D48A007D333B /* StudentsViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

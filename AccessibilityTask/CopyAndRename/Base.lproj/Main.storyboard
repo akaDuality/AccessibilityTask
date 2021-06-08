@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,7 +19,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="I5h-Yx-7Mn">
                                 <rect key="frame" x="20" y="436" width="374" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="continue"/>
                                 <connections>
                                     <action selector="emailDidChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="PRc-qF-8XM"/>
                                     <action selector="emailEditiingDidEnd:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="8mq-LC-TCR"/>
@@ -43,13 +43,16 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Поделись кусочком счастьяяяяя" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zEU-ZI-wCT">
-                                <rect key="frame" x="20" y="117" width="374" height="158"/>
+                                <rect key="frame" x="20" y="145.5" width="374" height="158"/>
+                                <accessibility key="accessibilityConfiguration" label="Поделись кусочком счастья">
+                                    <accessibilityTraits key="traits" staticText="YES" header="YES"/>
+                                </accessibility>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="44"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Подари кусочек пиццы своему другу. Напиши адрес и оплати, а мы пришлем ему письмо где получить." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TtQ-At-DX1">
-                                <rect key="frame" x="20" y="283" width="374" height="64.5"/>
+                                <rect key="frame" x="20" y="311.5" width="374" height="36"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -72,7 +75,7 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="yWP-a2-xt7">
+                                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="yWP-a2-xt7" customClass="AccessibleStepper" customModule="AccessibilityTask" customModuleProvider="target">
                                                                 <rect key="frame" x="191" y="0.0" width="94" height="32"/>
                                                                 <connections>
                                                                     <action selector="numberOfPiecesDidChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="gN6-X5-RE7"/>
@@ -88,12 +91,18 @@
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Добавить открытку" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H2o-Of-sL8">
                                                                         <rect key="frame" x="7.5" y="0.0" width="154.5" height="20.5"/>
+                                                                        <accessibility key="accessibilityConfiguration">
+                                                                            <bool key="isElement" value="NO"/>
+                                                                        </accessibility>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="+25 ₽" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wgY-dk-u58">
                                                                         <rect key="frame" x="131" y="23.5" width="31" height="7.5"/>
+                                                                        <accessibility key="accessibilityConfiguration">
+                                                                            <bool key="isElement" value="NO"/>
+                                                                        </accessibility>
                                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -116,6 +125,9 @@
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Итого:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Saz-Id-lam">
                                                                         <rect key="frame" x="0.0" y="0.0" width="52" height="26"/>
+                                                                        <accessibility key="accessibilityConfiguration">
+                                                                            <bool key="isElement" value="NO"/>
+                                                                        </accessibility>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -148,7 +160,7 @@
                                         </constraints>
                                         <edgeInsets key="layoutMargins" top="16" left="24" bottom="16" right="24"/>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OVh-rC-f9k">
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OVh-rC-f9k" customClass="PaymentButton" customModule="AccessibilityTask" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="195" width="333" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="rpF-bQ-h2G"/>
@@ -167,6 +179,9 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🍕" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2M8-qS-Wn9">
                                 <rect key="frame" x="259" y="130" width="108" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <bool key="isElement" value="NO"/>
+                                </accessibility>
                                 <fontDescription key="fontDescription" type="system" pointSize="100"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -194,13 +209,17 @@
                     <connections>
                         <outlet property="addPostcardSwitch" destination="olH-Ix-iL8" id="N03-aU-wLo"/>
                         <outlet property="countStepper" destination="yWP-a2-xt7" id="HoK-ZJ-8bn"/>
+                        <outlet property="dummyFriendAddressLabel" destination="5GN-Fq-FXp" id="ncE-Vc-aaB"/>
                         <outlet property="emailErrorLabel" destination="Web-MJ-0sb" id="Ea2-Vi-jCf"/>
                         <outlet property="emailMistakeLabel" destination="Web-MJ-0sb" id="c3F-GQ-rDX"/>
                         <outlet property="emailTextField" destination="I5h-Yx-7Mn" id="jyl-8m-MuL"/>
                         <outlet property="numberOfPiecesLabel" destination="HCC-5j-QZB" id="Xx1-7t-7pE"/>
                         <outlet property="paymentButton" destination="OVh-rC-f9k" id="7Lx-e3-9da"/>
+                        <outlet property="postcardLabelsStackContainer" destination="xNB-r7-4Qy" id="CZ3-OT-aig"/>
                         <outlet property="priceContainer" destination="FD4-b1-Hiq" id="340-or-bLJ"/>
                         <outlet property="successModalView" destination="LZQ-Tx-Jet" id="vxg-uH-hbM"/>
+                        <outlet property="successTextLabel" destination="NWB-SH-Y8B" id="RY5-0q-7Oe"/>
+                        <outlet property="successTitleLabel" destination="GDA-hw-xIZ" id="8GN-17-1Bx"/>
                         <outlet property="totalLabel" destination="6zX-h5-d4K" id="Cgc-pH-8NH"/>
                     </connections>
                 </viewController>
@@ -226,6 +245,9 @@
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🍕" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Pmm-XS-jwV">
                             <rect key="frame" x="23" y="23" width="56" height="63"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <accessibility key="accessibilityConfiguration">
+                                <bool key="isElement" value="NO"/>
+                            </accessibility>
                             <fontDescription key="fontDescription" type="system" pointSize="52"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
