@@ -51,7 +51,7 @@ class ShakeViewController: UIViewController {
     }
 }
 
-class ViewController: ShakeViewController {
+class ViewController: ShakeViewController, UITextFieldDelegate {
 
     @IBOutlet weak var successModalView: UIView!
     @IBOutlet private weak var dummyFriendAddressLabel: UILabel!
@@ -74,13 +74,15 @@ class ViewController: ShakeViewController {
         onShake = fillMockData
         emailErrorLabel.isHidden = true
         
+        emailTextField.delegate = self
+        
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(resignKeyboard))
         view.addGestureRecognizer(tapRecognizer)
         
         setupAccessibility()
         
         // WARNING: REMOVE BEFORE PR!
-        fillMockData()
+//        fillMockData()
         //
     }
     
@@ -104,6 +106,11 @@ class ViewController: ShakeViewController {
         totalLabel.accessibilityLabel = "Итого"
         totalLabel.accessibilityValue = "\(price) рублей"
         
+        if paymentButton.isEnabled {
+            paymentButton.accessibilityTraits.remove(.notEnabled)
+        } else {
+            paymentButton.accessibilityTraits.formUnion(.notEnabled)
+        }
         paymentButton.total = price
         paymentButton.piecesCount = Int(countStepper.value)
     }
@@ -115,8 +122,9 @@ class ViewController: ShakeViewController {
         countStepper.accessibilityFrame = screenCoordinate(stepperA11yFrame, in: view)
         numberOfPiecesLabel.isAccessibilityElement = false
 
-        let postcardSwitchA11yFrame = addPostcardSwitch.accessibilityFrame.union(postcardLabelsStackContainer.accessibilityFrame)
-        addPostcardSwitch.accessibilityFrame = screenCoordinate(postcardSwitchA11yFrame, in: view)
+        // Стэк-вью ломался :(
+//        let postcardSwitchA11yFrame = addPostcardSwitch.accessibilityFrame.union(postcardLabelsStackContainer.accessibilityFrame)
+//        addPostcardSwitch.accessibilityFrame = screenCoordinate(postcardSwitchA11yFrame, in: view)
     }
     
     private func screenCoordinate(_ value: CGRect, in view: UIView) -> CGRect {
@@ -147,10 +155,20 @@ class ViewController: ShakeViewController {
         }
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     @IBOutlet weak var emailMistakeLabel: UILabel!
     @IBAction func emailEditiingDidEnd(_ sender: UITextField) {
         let email: Email = sender.text!
         emailMistakeLabel.isHidden = email.isValid
+        if email.isValid {
+            UIAccessibility.post(notification: .layoutChanged, argument: countStepper)
+        } else {
+            UIAccessibility.post(notification: .layoutChanged, argument: emailMistakeLabel)
+        }
     }
     
     
@@ -246,6 +264,9 @@ extension PaymentButton: AXCustomContentProvider {
 
     var accessibilityCustomContent: [AXCustomContent]! {
         get {
+            guard isEnabled else {
+                return []
+            }
             let pieces = AXCustomContent(label: "Кусочков", value: String(describing: piecesCount))
             var postcard: AXCustomContent?
             if postcardAdded {
@@ -257,8 +278,6 @@ extension PaymentButton: AXCustomContentProvider {
         }
         set(accessibilityCustomContent) { }
     }
-    
-    
 }
 
 final class AccessibleStepper: UIStepper {

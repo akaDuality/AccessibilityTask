@@ -19,7 +19,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="I5h-Yx-7Mn">
                                 <rect key="frame" x="20" y="436" width="374" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="continue"/>
                                 <connections>
                                     <action selector="emailDidChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="PRc-qF-8XM"/>
                                     <action selector="emailEditiingDidEnd:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="8mq-LC-TCR"/>
