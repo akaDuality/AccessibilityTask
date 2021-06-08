@@ -111,9 +111,6 @@
                                                             </stackView>
                                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="olH-Ix-iL8">
                                                                 <rect key="frame" x="236" y="0.0" width="51" height="31"/>
-                                                                <accessibility key="accessibilityConfiguration">
-                                                                    <accessibilityTraits key="traits" button="YES" playsSound="YES"/>
-                                                                </accessibility>
                                                                 <connections>
                                                                     <action selector="addPostcardDidChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="ASM-DZ-KMs"/>
                                                                 </connections>

@@ -91,7 +91,7 @@ class ViewController: ShakeViewController {
     }
     
     private func setupAccessibility() {
-        emailTextField.accessibilityLabel = "Адрес друга"
+        emailTextField.accessibilityLabel = "E-mail друга"
         
         countStepper.accessibilityTraits.formUnion(.adjustable)
         countStepper.isAccessibilityElement = true
@@ -103,6 +103,9 @@ class ViewController: ShakeViewController {
         
         totalLabel.accessibilityLabel = "Итого"
         totalLabel.accessibilityValue = "\(price) рублей"
+        
+        paymentButton.total = price
+        paymentButton.piecesCount = Int(countStepper.value)
     }
     
     private func setupAccessibilityFrames() {
@@ -165,11 +168,6 @@ class ViewController: ShakeViewController {
     @IBAction func addPostcardDidChange(_ sender: Any) {
         updateTotal()
         paymentButton.postcardAdded = addPostcardSwitch.isOn
-        DispatchQueue.main.async {
-            let non = self.addPostcardSwitch.isOn ? "" : " не"
-            let text = "Открытка\(non) добавлена. Итого: \(self.price) рублей"
-            UIAccessibility.post(notification: .announcement, argument: text)
-        }
     }
     
     @IBOutlet weak var totalLabel: UILabel!
@@ -183,9 +181,7 @@ class ViewController: ShakeViewController {
     
     private func updateTotal() {
         totalLabel.text = "\(price) ₽"
-        
-        paymentButton.total = price
-        paymentButton.piecesCount = Int(countStepper.value)
+        setupAccessibility()
     }
     
     
